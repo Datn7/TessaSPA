@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <section class="col-md-3">
+      <h5 class="text-warning ml-3">დალაგება</h5>
+      <select class="custom-select mb-3">
+        <option>ანბანის მიხედვით</option>
+        <option>ფასი: დაბლიდან მაღლისკენ</option>
+        <option>ფასი: მაღლიდან დაბლისკენ</option>
+      </select>
+
+      <h5 class="text-warning ml-3">ბრენდები</h5>
+      <ul class="list-group my-3">
+        <li class="list-group-item" *ngFor="let brand of brands">
+          {{ brand.name }}
+        </li>
+      </ul>
+      <h5 class="text-warning ml-3">ტიპები</h5>
+      <ul class="list-group my-3">
+        <li class="list-group-item" *ngFor="let type of types">
+          {{ type.name }}
+        </li>
+      </ul>
+    </section>
+
+    <section class="col-md-9">
+      <div class="d-flex justify-content-between align-items-center pb-2">
+        <header>
+          <span
+            >ნახულობთ <strong>10</strong> ნივთს <strong>18</strong> დან</span
+          >
+        </header>
+        <div class="form-inline mt-2">
+          <input
+            class="form-control mr-2"
+            style="width: 300px"
+            placeholder="ძებნა"
+          />
+          <button class="btn btn-outline-primary my-2">ძებნა</button>
+          <button class="btn btn-outline-success my-2 ml-2">ახლიდან</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4 mt-2" *ngFor="let item of products">
+          <app-product-item [product]="item"></app-product-item>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

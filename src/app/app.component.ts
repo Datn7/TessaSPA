@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { IPagination } from './models/pagination.model';
-import { IProduct } from './models/product.model';
+import { IPagination } from './shared/models/pagination.model';
+import { IProduct } from './shared/models/product.model';
 
 @Component({
   selector: 'app-root',
@@ -10,18 +10,8 @@ import { IProduct } from './models/product.model';
 })
 export class AppComponent implements OnInit {
   title = 'TessaSPA';
-  products: IProduct[];
 
-  constructor(private _http: HttpClient) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this._http.get('http://localhost:5000/api/product').subscribe(
-      (res: IPagination) => {
-        this.products = res.data;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
+  ngOnInit(): void {}
 }
