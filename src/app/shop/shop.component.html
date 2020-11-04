@@ -2,21 +2,36 @@
   <div class="row">
     <section class="col-md-3">
       <h5 class="text-warning ml-3">დალაგება</h5>
-      <select class="custom-select mb-3">
-        <option>ანბანის მიხედვით</option>
-        <option>ფასი: დაბლიდან მაღლისკენ</option>
-        <option>ფასი: მაღლიდან დაბლისკენ</option>
+      <select
+        class="custom-select mb-3"
+        (change)="onSortSelected($event.target.value)"
+      >
+        <option *ngFor="let sort of sortOptions" [value]="sort.value">
+          {{ sort.name }}
+        </option>
       </select>
 
       <h5 class="text-warning ml-3">ბრენდები</h5>
       <ul class="list-group my-3">
-        <li class="list-group-item" *ngFor="let brand of brands">
+        <li
+          class="list-group-item"
+          *ngFor="let brand of brands"
+          [class.active]="brand.id === this.shopParams.brandId"
+          [value]="brand.id"
+          (click)="onBrandSelected(brand.id)"
+        >
           {{ brand.name }}
         </li>
       </ul>
       <h5 class="text-warning ml-3">ტიპები</h5>
       <ul class="list-group my-3">
-        <li class="list-group-item" *ngFor="let type of types">
+        <li
+          class="list-group-item"
+          *ngFor="let type of types"
+          [class.active]="type.id === this.shopParams.typeId"
+          [value]="type.id"
+          (click)="onTypeSelected(type.id)"
+        >
           {{ type.name }}
         </li>
       </ul>
@@ -24,19 +39,25 @@
 
     <section class="col-md-9">
       <div class="d-flex justify-content-between align-items-center pb-2">
-        <header>
-          <span
-            >ნახულობთ <strong>10</strong> ნივთს <strong>18</strong> დან</span
-          >
-        </header>
+        <app-pagin-header
+          [totalCount]="totalCount"
+          [pageSize]="this.shopParams.pageSize"
+          [pageNumber]="this.shopParams.pageNumber"
+        ></app-pagin-header>
         <div class="form-inline mt-2">
           <input
+            (keyup.enter)="onSearch()"
             class="form-control mr-2"
             style="width: 300px"
             placeholder="ძებნა"
+            #search
           />
-          <button class="btn btn-outline-primary my-2">ძებნა</button>
-          <button class="btn btn-outline-success my-2 ml-2">ახლიდან</button>
+          <button class="btn btn-outline-primary my-2" (click)="onSearch()">
+            ძებნა
+          </button>
+          <button class="btn btn-outline-success my-2 ml-2" (click)="onReset()">
+            ახლიდან
+          </button>
         </div>
       </div>
 
@@ -44,6 +65,14 @@
         <div class="col-md-4 mt-2" *ngFor="let item of products">
           <app-product-item [product]="item"></app-product-item>
         </div>
+      </div>
+
+      <div class="d-flex justify-content-center mt-3" *ngIf="totalCount > 0">
+        <app-pager
+          [pageSize]="shopParams.pageSize"
+          [totalCount]="totalCount"
+          (pageChanged)="onPageChanged($event)"
+        ></app-pager>
       </div>
     </section>
   </div>
