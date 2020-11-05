@@ -1,0 +1,21 @@
+<div class="bg-light px-4 py-3 font-weight-bold">შეკვეთა:</div>
+
+<div class="p-4">
+  <p class="font-italic mb-4">
+    ტრანსპორტირების ხარჯები განისაზღვრება შეკვეთიდან გამომდინარე
+  </p>
+  <ul class="list-unstyled mb-4" *ngIf="basketTotal$ | async as totals">
+    <li class="d-flex justify-content-between py-3 border-bottom">
+      <strong class="text-muted">ნივთების ჯამი</strong>
+      <strong>{{ totals.subtotal | currency }}</strong>
+    </li>
+    <li class="d-flex justify-content-between py-3 border-bottom">
+      <strong class="text-muted">ტრანსპორტირება და მიტანა</strong>
+      <strong>{{ totals.shipping | currency }}</strong>
+    </li>
+    <li class="d-flex justify-content-between py-3 border-bottom">
+      <strong class="text-muted">მთლიანი ჯამი</strong>
+      <strong>{{ totals.total | currency }}</strong>
+    </li>
+  </ul>
+</div>
