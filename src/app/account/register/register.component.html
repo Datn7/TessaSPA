@@ -1,0 +1,53 @@
+<div class="d-flex justify-content-center mt-5">
+  <div class="col-3">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="text-center mb-4">
+        <img
+          class="mb-4"
+          src="/assets/images/tessaLogo.png"
+          alt=""
+          width="172"
+          height="172"
+        />
+        <h1 class="h3 mb-3 font-weight-normal">რეგისტრაცია</h1>
+      </div>
+
+      <div class="form-label-group">
+        <input
+          id="displayName"
+          class="form-control"
+          placeholder="მომხმარებელი"
+          formControlName="displayName"
+        />
+        <label for="inputEmail">მომხმარებელი</label>
+      </div>
+
+      <div class="form-label-group">
+        <input
+          type="email"
+          id="inputEmail"
+          class="form-control"
+          placeholder="ელექტრონული ფოსტა"
+          formControlName="email"
+        />
+        <label for="inputEmail">ელექტრონული ფოსტა</label>
+      </div>
+
+      <div class="form-label-group">
+        <input
+          type="password"
+          id="inputPassword"
+          class="form-control"
+          placeholder="პაროლი"
+          formControlName="password"
+        />
+        <label for="inputPassword">პაროლი</label>
+      </div>
+
+      <button class="btn btn-lg btn-primary btn-block" type="submit">
+        რეგისტრაცია
+      </button>
+      <p class="mt-5 mb-3 text-muted text-center">©2020</p>
+    </form>
+  </div>
+</div>
