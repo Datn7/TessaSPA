@@ -26,7 +26,10 @@ export class LoginComponent implements OnInit {
 
   createLoginForm() {
     this.loginForm = new FormGroup({
-      email: new FormControl('', Validators.required),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$'),
+      ]),
       password: new FormControl('', Validators.required),
     });
   }
@@ -35,7 +38,6 @@ export class LoginComponent implements OnInit {
     this._accountService.login(this.loginForm.value).subscribe(
       () => {
         this._router.navigateByUrl(this.returnUrl);
-        console.log('user logged in');
       },
       (error) => {
         console.log(error);
